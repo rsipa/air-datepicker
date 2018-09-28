@@ -1,6 +1,6 @@
 {
   "name": "air-datepicker",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "devDependencies": {
     "autoprefixer": "^6.1.0",
     "browserify": "^13.0.0",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/t1m0n/air-datepicker.git"
+    "url": "git+https://github.com/rsipa/air-datepicker.git"
   },
   "keywords": [
     "datepicker",
@@ -48,7 +48,7 @@
   "author": "t1m0n <t1m0n.tr@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/t1m0n/air-datepicker/issues"
+    "url": "https://github.com/rsipa/air-datepicker/issues"
   },
   "homepage": "http://t1m0n.name/air-datepicker/docs/"
 }
