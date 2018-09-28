@@ -1,5 +1,5 @@
 ;(function () {
-    var VERSION = '2.2.3',
+    var VERSION = '2.2.4',
         pluginName = 'datepicker',
         autoInitSelector = '.datepicker-here',
         $body, $datepickersContainer,
@@ -444,7 +444,6 @@
             return new RegExp('(^|>|' + symbols + ')(' + sign + ')($|<|' + symbols + ')', 'g');
         },
 
-
         selectDate: function (date) {
             var _this = this,
                 opts = _this.opts,
@@ -481,6 +480,10 @@
             }
 
             if (_this.view == 'days') {
+                newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            }
+
+            if (_this.view == 'months') {
                 if (date.getMonth() != d.month && opts.moveToOtherMonthsOnSelect) {
                     newDate = new Date(date.getFullYear(), date.getMonth(), 1);
                 }
