@@ -26,6 +26,9 @@ $('.my-datepicker').datepicker([options])
 
 ## Change log
 
+### v2.2.4
+* fixed selectDate for days and months view
+
 ### v2.2.3
 * fixed min,max dates in decade mode
 
