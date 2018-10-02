@@ -463,22 +463,6 @@
 
             this.lastSelectedDate = date;
 
-            // Set new time values from Date
-            if (this.timepicker) {
-                this.timepicker._setTime(date);
-            }
-
-            // On this step timepicker will set valid values in it's instance
-            _this._trigger('selectDate', date);
-
-            // Set correct time values after timepicker's validation
-            // Prevent from setting hours or minutes which values are lesser then `min` value or
-            // greater then `max` value
-            if (this.timepicker) {
-                date.setHours(this.timepicker.hours);
-                date.setMinutes(this.timepicker.minutes)
-            }
-
             if (_this.view == 'days') {
                 newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
             }
@@ -493,6 +477,24 @@
                 if (date.getFullYear() != d.year && opts.moveToOtherYearsOnSelect) {
                     newDate = new Date(date.getFullYear(), 0, 1);
                 }
+            }
+
+            // Set new time values from Date
+            if (this.timepicker) {
+                this.timepicker._setTime(date);
+            }
+
+            // On this step timepicker will set valid values in it's instance
+            _this._trigger('selectDate', date);
+
+            // Set correct time values after timepicker's validation
+            // Prevent from setting hours or minutes which values are lesser then `min` value or
+            // greater then `max` value
+            if (this.timepicker) {
+                date.setHours(this.timepicker.hours);
+                date.setMinutes(this.timepicker.minutes)
+                newDate.setHours(this.timepicker.hours)
+                newDate.setMinutes(this.timepicker.minutes)
             }
 
             if (newDate) {
