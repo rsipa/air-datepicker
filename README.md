@@ -28,6 +28,7 @@ $('.my-datepicker').datepicker([options])
 
 ### v2.2.6
 * fixed conflict with JQuery UI datepicker. Renamed datepicker to airdatepicker
+* change plugin name to airdatepicker
 * added fr and en languages to datepicker.js
 * removed ru language from datepicker.js
 * changed default language to fr (français)
