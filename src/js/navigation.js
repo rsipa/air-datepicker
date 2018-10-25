@@ -5,7 +5,7 @@
         '<div class="datepicker--nav-action" data-action="next">#{nextHtml}</div>',
         buttonsContainerTemplate = '<div class="datepicker--buttons"></div>',
         button = '<span class="datepicker--button" data-action="#{action}">#{label}</span>',
-        datepicker = $.fn.datepicker,
+        datepicker = $.fn.airdatepicker,
         dp = datepicker.Constructor;
 
     datepicker.Navigation = function (d, opts) {

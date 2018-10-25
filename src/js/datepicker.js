@@ -1,5 +1,5 @@
 ;(function () {
-    var VERSION = '2.2.4',
+    var VERSION = '2.2.6',
         pluginName = 'datepicker',
         autoInitSelector = '.datepicker-here',
         $body, $datepickersContainer,
@@ -13,7 +13,7 @@
         defaults = {
             classes: '',
             inline: false,
-            language: 'ru',
+            language: 'fr',
             startDate: new Date(),
             firstDay: '',
             weekends: [6, 0],
@@ -99,9 +99,9 @@
             'altDown': [18, 40],
             'ctrlShiftUp': [16, 17, 38]
         },
-        datepicker;
+        airdatepicker;
 
-    var Datepicker  = function (el, options) {
+    var AirDatepicker  = function (el, options) {
         this.el = el;
         this.$el = $(el);
 
@@ -140,9 +140,9 @@
         this.init()
     };
 
-    datepicker = Datepicker;
+    airdatepicker = AirDatepicker;
 
-    datepicker.prototype = {
+    airdatepicker.prototype = {
         VERSION: VERSION,
         viewIndexes: ['days', 'months', 'years'],
 
@@ -172,7 +172,7 @@
             }
 
             if (this.opts.timepicker) {
-                this.timepicker = new $.fn.datepicker.Timepicker(this, this.opts);
+                this.timepicker = new $.fn.airdatepicker.Timepicker(this, this.opts);
                 this._bindTimepickerEvents();
             }
 
@@ -180,9 +180,9 @@
                 this.$datepicker.addClass('-only-timepicker-');
             }
 
-            this.views[this.currentView] = new $.fn.datepicker.Body(this, this.currentView, this.opts);
+            this.views[this.currentView] = new $.fn.airdatepicker.Body(this, this.currentView, this.opts);
             this.views[this.currentView].show();
-            this.nav = new $.fn.datepicker.Navigation(this, this.opts);
+            this.nav = new $.fn.airdatepicker.Navigation(this, this.opts);
             this.view = this.currentView;
 
             this.$el.on('clickCell.adp', this._onClickCell.bind(this));
@@ -222,15 +222,15 @@
 
         _defineLocale: function (lang) {
             if (typeof lang == 'string') {
-                this.loc = $.fn.datepicker.language[lang];
+                this.loc = $.fn.airdatepicker.language[lang];
                 if (!this.loc) {
-                    console.warn('Can\'t find language "' + lang + '" in Datepicker.language, will use "ru" instead');
-                    this.loc = $.extend(true, {}, $.fn.datepicker.language.ru)
+                    console.warn('Can\'t find language "' + lang + '" in AirDatepicker.language, will use "fr" instead');
+                    this.loc = $.extend(true, {}, $.fn.airdatepicker.language.fr)
                 }
 
-                this.loc = $.extend(true, {}, $.fn.datepicker.language.ru, $.fn.datepicker.language[lang])
+                this.loc = $.extend(true, {}, $.fn.airdatepicker.language.fr, $.fn.airdatepicker.language[lang])
             } else {
-                this.loc = $.extend(true, {}, $.fn.datepicker.language.ru, lang)
+                this.loc = $.extend(true, {}, $.fn.airdatepicker.language.fr, lang)
             }
 
             if (this.opts.dateFormat) {
@@ -295,7 +295,7 @@
             }
 
             var selectedDates = this.selectedDates,
-                parsedSelected = datepicker.getParsedDate(selectedDates[0]),
+                parsedSelected = airdatepicker.getParsedDate(selectedDates[0]),
                 formattedDates,
                 _this = this,
                 dates = new Date(
@@ -313,7 +313,7 @@
             // Create new dates array, to separate it from original selectedDates
             if (this.opts.multipleDates || this.opts.range) {
                 dates = selectedDates.map(function(date) {
-                    var parsedDate = datepicker.getParsedDate(date);
+                    var parsedDate = airdatepicker.getParsedDate(date);
                     return new Date(
                         parsedDate.year,
                         parsedDate.month,
@@ -371,9 +371,9 @@
             var result = string,
                 boundary = this._getWordBoundaryRegExp,
                 locale = this.loc,
-                leadingZero = datepicker.getLeadingZeroNum,
-                decade = datepicker.getDecade(date),
-                d = datepicker.getParsedDate(date),
+                leadingZero = airdatepicker.getLeadingZeroNum,
+                decade = airdatepicker.getDecade(date),
+                d = airdatepicker.getParsedDate(date),
                 fullHours = d.fullHours,
                 hours = d.hours,
                 ampm = string.match(boundary('aa')) || string.match(boundary('AA')),
@@ -522,7 +522,7 @@
                         _this.minRange = date;
                     }
                     // Swap dates if they were selected via dp.selectDate() and second date was smaller then first
-                    if (datepicker.bigger(_this.maxRange, _this.minRange)) {
+                    if (airdatepicker.bigger(_this.maxRange, _this.minRange)) {
                         _this.maxRange = _this.minRange;
                         _this.minRange = date;
                     }
@@ -560,7 +560,7 @@
             if (!(date instanceof Date)) return;
 
             return selected.some(function (curDate, i) {
-                if (datepicker.isSame(curDate, date)) {
+                if (airdatepicker.isSame(curDate, date)) {
                     selected.splice(i, 1);
 
                     if (!_this.selectedDates.length) {
@@ -674,7 +674,7 @@
         _isSelected: function (checkDate, cellType) {
             var res = false;
             this.selectedDates.some(function (date) {
-                if (datepicker.isSame(date, checkDate, cellType)) {
+                if (airdatepicker.isSame(date, checkDate, cellType)) {
                     res = date;
                     return true;
                 }
@@ -714,9 +714,9 @@
          */
         _isInRange: function (date, type) {
             var time = date.getTime(),
-                d = datepicker.getParsedDate(date),
-                min = datepicker.getParsedDate(this.minDate),
-                max = datepicker.getParsedDate(this.maxDate),
+                d = airdatepicker.getParsedDate(date),
+                min = airdatepicker.getParsedDate(this.minDate),
+                max = airdatepicker.getParsedDate(this.maxDate),
                 dMinTime = new Date(d.year, d.month, min.date).getTime(),
                 dMaxTime = new Date(d.year, d.month, max.date).getTime(),
                 types = {
@@ -876,7 +876,7 @@
         },
 
         _handleHotKey: function (key) {
-            var date = datepicker.getParsedDate(this._getFocusedDate()),
+            var date = airdatepicker.getParsedDate(this._getFocusedDate()),
                 focusedParsed,
                 o = this.opts,
                 newDate,
@@ -924,7 +924,7 @@
                     break;
             }
 
-            totalDaysInNextMonth = datepicker.getDaysCount(new Date(y,m));
+            totalDaysInNextMonth = airdatepicker.getDaysCount(new Date(y,m));
             newDate = new Date(y,m,d);
 
             // If next month has less days than current, set date to total days in that month
@@ -939,7 +939,7 @@
 
             this.focused = newDate;
 
-            focusedParsed = datepicker.getParsedDate(newDate);
+            focusedParsed = airdatepicker.getParsedDate(newDate);
             if (monthChanged && o.onChangeMonth) {
                 o.onChangeMonth(focusedParsed.month, focusedParsed.year)
             }
@@ -993,7 +993,7 @@
         _focusNextCell: function (keyCode, type) {
             type = type || this.cellType;
 
-            var date = datepicker.getParsedDate(this._getFocusedDate()),
+            var date = airdatepicker.getParsedDate(this._getFocusedDate()),
                 y = date.year,
                 m = date.month,
                 d = date.date;
@@ -1060,7 +1060,7 @@
         _getCell: function (date, type) {
             type = type || this.cellType;
 
-            var d = datepicker.getParsedDate(date),
+            var d = airdatepicker.getParsedDate(date),
                 selector = '.datepicker--cell[data-year="' + d.year + '"]',
                 $cell;
 
@@ -1236,7 +1236,7 @@
             if (this.opts.range && this.selectedDates.length == 1) {
                 this.minRange = this.selectedDates[0];
                 this.maxRange = '';
-                if (datepicker.less(this.minRange, this.focused)) {
+                if (airdatepicker.less(this.minRange, this.focused)) {
                     this.maxRange = this.minRange;
                     this.minRange = '';
                 }
@@ -1297,7 +1297,7 @@
             if (this.opts.range && this.selectedDates.length == 1) {
                 this.minRange = this.selectedDates[0];
                 this.maxRange = '';
-                if (datepicker.less(this.minRange, this._focused)) {
+                if (airdatepicker.less(this.minRange, this._focused)) {
                     this.maxRange = this.minRange;
                     this.minRange = '';
                 }
@@ -1311,7 +1311,7 @@
         },
 
         get parsedDate() {
-            return datepicker.getParsedDate(this.date);
+            return airdatepicker.getParsedDate(this.date);
         },
 
         set date (val) {
@@ -1345,7 +1345,7 @@
 
             if (this.inited) {
                 if (!this.views[val]) {
-                    this.views[val] = new  $.fn.datepicker.Body(this, val, this.opts)
+                    this.views[val] = new  $.fn.airdatepicker.Body(this, val, this.opts)
                 } else {
                     this.views[val]._render();
                 }
@@ -1372,28 +1372,28 @@
         },
 
         get minTime() {
-            var min = datepicker.getParsedDate(this.minDate);
+            var min = airdatepicker.getParsedDate(this.minDate);
             return new Date(min.year, min.month, min.date).getTime()
         },
 
         get maxTime() {
-            var max = datepicker.getParsedDate(this.maxDate);
+            var max = airdatepicker.getParsedDate(this.maxDate);
             return new Date(max.year, max.month, max.date).getTime()
         },
 
         get curDecade() {
-            return datepicker.getDecade(this.date)
+            return airdatepicker.getDecade(this.date)
         }
     };
 
     //  Utils
     // -------------------------------------------------
 
-    datepicker.getDaysCount = function (date) {
+    airdatepicker.getDaysCount = function (date) {
         return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     };
 
-    datepicker.getParsedDate = function (date) {
+    airdatepicker.getParsedDate = function (date) {
         return {
             year: date.getFullYear(),
             month: date.getMonth(),
@@ -1408,13 +1408,13 @@
         }
     };
 
-    datepicker.getDecade = function (date) {
+    airdatepicker.getDecade = function (date) {
         var firstYear = Math.floor(date.getFullYear() / 10) * 10;
 
         return [firstYear, firstYear + 9];
     };
 
-    datepicker.template = function (str, data) {
+    airdatepicker.template = function (str, data) {
         return str.replace(/#\{([\w]+)\}/g, function (source, match) {
             if (data[match] || data[match] === 0) {
                 return data[match]
@@ -1422,10 +1422,10 @@
         });
     };
 
-    datepicker.isSame = function (date1, date2, type) {
+    airdatepicker.isSame = function (date1, date2, type) {
         if (!date1 || !date2) return false;
-        var d1 = datepicker.getParsedDate(date1),
-            d2 = datepicker.getParsedDate(date2),
+        var d1 = airdatepicker.getParsedDate(date1),
+            d2 = airdatepicker.getParsedDate(date2),
             _type = type ? type : 'day',
 
             conditions = {
@@ -1437,17 +1437,17 @@
         return conditions[_type];
     };
 
-    datepicker.less = function (dateCompareTo, date, type) {
+    airdatepicker.less = function (dateCompareTo, date, type) {
         if (!dateCompareTo || !date) return false;
         return date.getTime() < dateCompareTo.getTime();
     };
 
-    datepicker.bigger = function (dateCompareTo, date, type) {
+    airdatepicker.bigger = function (dateCompareTo, date, type) {
         if (!dateCompareTo || !date) return false;
         return date.getTime() > dateCompareTo.getTime();
     };
 
-    datepicker.getLeadingZeroNum = function (num) {
+    airdatepicker.getLeadingZeroNum = function (num) {
         return parseInt(num) < 10 ? '0' + num : num;
     };
 
@@ -1455,17 +1455,17 @@
      * Returns copy of date with hours and minutes equals to 0
      * @param date {Date}
      */
-    datepicker.resetTime = function (date) {
+    airdatepicker.resetTime = function (date) {
         if (typeof date != 'object') return;
-        date = datepicker.getParsedDate(date);
+        date = airdatepicker.getParsedDate(date);
         return new Date(date.year, date.month, date.date)
     };
 
-    $.fn.datepicker = function ( options ) {
+    $.fn.airdatepicker = function ( options ) {
         return this.each(function () {
             if (!$.data(this, pluginName)) {
                 $.data(this,  pluginName,
-                    new Datepicker( this, options ));
+                    new AirDatepicker( this, options ));
             } else {
                 var _this = $.data(this, pluginName);
 
@@ -1475,25 +1475,37 @@
         });
     };
 
-    $.fn.datepicker.Constructor = Datepicker;
+    $.fn.airdatepicker.Constructor = AirDatepicker;
 
-    $.fn.datepicker.language = {
-        ru: {
-            days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-            daysShort: ['Вос','Пон','Вто','Сре','Чет','Пят','Суб'],
-            daysMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-            monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-            today: 'Сегодня',
-            clear: 'Очистить',
-            dateFormat: 'dd.mm.yyyy',
+    $.fn.airdatepicker.language = {
+        fr: {
+            days: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+            daysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            daysMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
+            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            monthsShort: ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
+            today: 'Aujourd\'hui',
+            clear: 'Effacer',
+            dateFormat: 'yyyy/mm/dd',
             timeFormat: 'hh:ii',
             firstDay: 1
-        }
+          },
+          en: {
+            days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            today: 'Today',
+            clear: 'Clear',
+            dateFormat: 'mm/dd/yyyy',
+            timeFormat: 'hh:ii aa',
+            firstDay: 0
+          }
     };
 
     $(function () {
-        $(autoInitSelector).datepicker();
+        $(autoInitSelector).airdatepicker();
     })
 
 })();
