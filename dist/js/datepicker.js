@@ -99,9 +99,9 @@
             'altDown': [18, 40],
             'ctrlShiftUp': [16, 17, 38]
         },
-        datepicker;
+        datepickerAir;
 
-    var Datepicker  = function (el, options) {
+    var DatepickerAir  = function (el, options) {
         this.el = el;
         this.$el = $(el);
 
@@ -140,9 +140,9 @@
         this.init()
     };
 
-    datepicker = Datepicker;
+    datepickerAir = DatepickerAir;
 
-    datepicker.prototype = {
+    datepickerAir.prototype = {
         VERSION: VERSION,
         viewIndexes: ['days', 'months', 'years'],
 
@@ -2233,7 +2233,7 @@
         _onChangeRange: function (e) {
             var $target = $(e.target),
                 name = $target.attr('name');
-            
+
             this.d.timepickerIsActive = true;
 
             this[name] = $target.val();

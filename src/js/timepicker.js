@@ -14,7 +14,7 @@
         '   </div>' +
         '</div>' +
         '</div>',
-        datepicker = $.fn.datepicker,
+        datepicker = $.fn.airdatepicker,
         dp = datepicker.Constructor;
 
     datepicker.Timepicker = function (inst, opts) {
