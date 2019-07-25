@@ -26,6 +26,9 @@ $('.my-datepicker').datepicker([options])
 
 ## Change log
 
+### v2.2.7
+* Change deprecated JQuery calls
+
 ### v2.2.6
 * fixed conflict with JQuery UI datepicker. Renamed datepicker to airdatepicker
 * change plugin name to airdatepicker

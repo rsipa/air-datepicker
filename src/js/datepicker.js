@@ -1,5 +1,5 @@
 ;(function () {
-    var VERSION = '2.2.6',
+    var VERSION = '2.2.7',
         pluginName = 'airdatepicker',
         autoInitSelector = '.datepicker-here',
         $body, $datepickersContainer,
@@ -840,7 +840,7 @@
 
             this.inFocus = false;
             this.visible = false;
-            this.$el.blur();
+            this.$el.trigger("blur");
 
             if (onHide) {
                 this._bindVisionEvents(onHide)
@@ -1140,7 +1140,7 @@
         _onMouseUpDatepicker: function (e) {
             this.inFocus = false;
             e.originalEvent.inFocus = true;
-            if (!e.originalEvent.timepickerFocus) this.$el.focus();
+            if (!e.originalEvent.timepickerFocus) this.$el.trigger("focus");
         },
 
         _onKeyUpGeneral: function (e) {
