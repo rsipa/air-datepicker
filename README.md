@@ -26,6 +26,8 @@ $('.my-datepicker').datepicker([options])
 
 ## Change log
 
+### v2.2.8
+
 ### v2.2.7
 * Change deprecated JQuery calls
 

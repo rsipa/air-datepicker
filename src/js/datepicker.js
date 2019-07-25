@@ -1,5 +1,5 @@
 ;(function () {
-    var VERSION = '2.2.7',
+    var VERSION = '2.2.8',
         pluginName = 'airdatepicker',
         autoInitSelector = '.datepicker-here',
         $body, $datepickersContainer,
