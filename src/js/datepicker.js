@@ -445,7 +445,7 @@
         },
 
         selectDate: function (date) {
-            console.log(`airpicker selectDate date ${date}`)
+            console.log('airpicker selectDate date ' + ${date})
             var _this = this,
                 opts = _this.opts,
                 d = _this.parsedDate,
@@ -604,9 +604,9 @@
             this.minRange = '';
             this.maxRange = '';
             this.views[this.currentView]._render();
-            console.log(`airpicker clear - before _setInputValue this.$el ${this.$el.val()}`)
+            console.log('airpicker clear - before _setInputValue this.$el ' + this.$el.val())
             this._setInputValue();
-            console.log(`airpicker clear - after _setInputValue this.$el ${this.$el.val()}`)
+            console.log('airpicker clear - after _setInputValue this.$el ' + this.$el.val())
             if (this.opts.onSelect) {
                 this._triggerOnChange()
             }
@@ -1323,7 +1323,7 @@
 
         set date (val) {
             if (!(val instanceof Date)) {
-                console.log(`airpicker set Date, date not instanceof Date type`)
+                console.log('airpicker set Date, date not instanceof Date type')
                 return;
             }
 
@@ -1336,7 +1336,7 @@
                     this.setPosition();
                 }
             }
-            console.log(`airpicker set Date, done`)
+            console.log('airpicker set Date, done')
             return val;
         },
 
