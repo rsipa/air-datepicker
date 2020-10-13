@@ -706,6 +706,8 @@
         },
 
         _setInputValue: function () {
+            console.log('air picker _setInputValue BEGIN')
+            console.log('air picker _setInputValue _this.loc.dateFormat ' + _this.loc.dateFormat + ' opts.altFieldDateFormat ' + opts.altFieldDateFormat)
             var _this = this,
                 opts = _this.opts,
                 format = _this.loc.dateFormat,
@@ -715,6 +717,8 @@
                 }),
                 altValues;
 
+            console.log('air picker _setInputValue _this.selectedDates ' + _this.selectedDates + ' value ' + value)
+
             if (opts.altField && _this.$altField.length) {
                 altValues = this.selectedDates.map(function (date) {
                     return _this.formatDate(altFormat, date)
@@ -723,7 +727,11 @@
                 this.$altField.val(altValues);
             }
 
+            console.log('air picker _setInputValue altValues ' + altValues)
+
             value = value.join(this.opts.multipleDatesSeparator);
+
+            console.log('air picker _setInputValue this.opts.multipleDatesSeparator ' + this.opts.multipleDatesSeparator + ' value ' + value)
 
             this.$el.val(value)
         },
