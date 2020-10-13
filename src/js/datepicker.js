@@ -287,7 +287,9 @@
         },
 
         _triggerOnChange: function () {
+            console.log('air picker _triggerOnChange BEGIN')
             if (!this.selectedDates.length) {
+                console.log('air picker _triggerOnChange !this.selectedDates.length true')
                 // Prevent from triggering multiple onSelect callback with same argument (empty string) in IE10-11
                 if (this._prevOnSelectValue === '') return;
                 this._prevOnSelectValue = '';
@@ -325,7 +327,10 @@
             }
 
             this._prevOnSelectValue = formattedDates;
+            console.log('air picker _triggerOnChange before onSelect this.$el.val() ' + this.$el.val())
             this.opts.onSelect(formattedDates, dates, this);
+            console.log('air picker _triggerOnChange after onSelect this.$el.val() ' + this.$el.val())
+            console.log('air picker _triggerOnChange END')
         },
 
         next: function () {
@@ -367,7 +372,10 @@
         },
 
         formatDate: function (string, date) {
+            console.log('air picker formatDate BEGIN')
+            console.log('air picker formatDate before date = date || this.date string' + string + ', date ' + date + ', this.date ' + this.date)
             date = date || this.date;
+            console.log('air picker formatDate after date = date || this.date string' + string + ', date ' + date + ', this.date ' + this.date)
             var result = string,
                 boundary = this._getWordBoundaryRegExp,
                 locale = this.loc,
@@ -429,6 +437,7 @@
                     result = replacer(result, boundary('yy'), d.year.toString().slice(-2));
             }
 
+            console.log('air picker formatDate END result ' + result)
             return result;
         },
 
@@ -469,17 +478,20 @@
 
             if (_this.view == 'days') {
                 newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                console.log('airpicker selectDate view days newDate ' + newDate)
             }
 
             if (_this.view == 'months') {
                 if (date.getMonth() != d.month && opts.moveToOtherMonthsOnSelect) {
                     newDate = new Date(date.getFullYear(), date.getMonth(), 1);
+                    console.log('airpicker selectDate view months newDate ' + newDate)
                 }
             }
 
             if (_this.view == 'years') {
                 if (date.getFullYear() != d.year && opts.moveToOtherYearsOnSelect) {
                     newDate = new Date(date.getFullYear(), 0, 1);
+                    console.log('airpicker selectDate view years newDate ' + newDate)
                 }
             }
 
@@ -540,7 +552,9 @@
                 _this.selectedDates = [date];
             }
 
+            console.log('airpicker selectDate before _this._setInputValue this.$el.val() ' + this.$el.val())
             _this._setInputValue();
+            console.log('airpicker selectDate before _this._setInputValue this.$el.val() ' + this.$el.val())
 
             if (opts.onSelect) {
                 _this._triggerOnChange();
@@ -660,7 +674,9 @@
                 }
             }
 
+            console.log('airpicker update - before _setInputValue this.$el ' + this.$el.val())
             this._setInputValue();
+            console.log('airpicker update - after _setInputValue this.$el ' + this.$el.val())
 
             return this;
         },
