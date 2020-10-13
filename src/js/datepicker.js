@@ -709,7 +709,7 @@
 
             value = value.join(this.opts.multipleDatesSeparator);
 
-            this.$elthis.$el.val(value)
+            this.$el.val(value)
         },
 
         /**
