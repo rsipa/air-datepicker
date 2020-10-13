@@ -445,7 +445,7 @@
         },
 
         selectDate: function (date) {
-            console.log('airpicker selectDate date ' + ${date})
+            console.log('airpicker selectDate date ' + date)
             var _this = this,
                 opts = _this.opts,
                 d = _this.parsedDate,
