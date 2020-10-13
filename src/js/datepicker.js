@@ -707,7 +707,7 @@
 
         _setInputValue: function () {
             console.log('air picker _setInputValue BEGIN')
-            console.log('air picker _setInputValue _this.loc.dateFormat ' + _this.loc.dateFormat + ' opts.altFieldDateFormat ' + opts.altFieldDateFormat)
+            console.log('air picker _setInputValue _this.loc.dateFormat ' + this.loc.dateFormat + ' opts.altFieldDateFormat ' + this.opts.altFieldDateFormat)
             var _this = this,
                 opts = _this.opts,
                 format = _this.loc.dateFormat,
