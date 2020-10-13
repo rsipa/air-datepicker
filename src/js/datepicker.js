@@ -445,6 +445,7 @@
         },
 
         selectDate: function (date) {
+            console.log(`airpicker selectDate date ${date}`)
             var _this = this,
                 opts = _this.opts,
                 d = _this.parsedDate,
@@ -459,7 +460,10 @@
                 return;
             }
 
-            if (!(date instanceof Date)) return;
+            if (!(date instanceof Date)) {
+                console.log('airpicker selectDate date is not an instanceof Date')
+                return;
+            }
 
             this.lastSelectedDate = date;
 
@@ -595,11 +599,14 @@
         },
 
         clear: function () {
+            console.log('airpicker clear')
             this.selectedDates = [];
             this.minRange = '';
             this.maxRange = '';
             this.views[this.currentView]._render();
+            console.log(`airpicker clear - before _setInputValue this.$el ${this.$el.val()}`)
             this._setInputValue();
+            console.log(`airpicker clear - after _setInputValue this.$el ${this.$el.val()}`)
             if (this.opts.onSelect) {
                 this._triggerOnChange()
             }
@@ -702,7 +709,7 @@
 
             value = value.join(this.opts.multipleDatesSeparator);
 
-            this.$el.val(value)
+            this.$elthis.$el.val(value)
         },
 
         /**
@@ -1315,7 +1322,10 @@
         },
 
         set date (val) {
-            if (!(val instanceof Date)) return;
+            if (!(val instanceof Date)) {
+                console.log(`airpicker set Date, date not instanceof Date type`)
+                return;
+            }
 
             this.currentDate = val;
 
@@ -1326,6 +1336,7 @@
                     this.setPosition();
                 }
             }
+            console.log(`airpicker set Date, done`)
             return val;
         },
 
